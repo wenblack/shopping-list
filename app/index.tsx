@@ -24,6 +24,8 @@ import {
 } from "@gluestack-ui/themed";
 import waterIcon from "@/assets/Icons/Emoji";
 import { CardWater } from "@/components/CardWater";
+import { ChevronRight } from "lucide-react-native";
+import ArrowRight from "@/assets/Icons/ChevronLeft";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
@@ -148,13 +150,19 @@ export default function App() {
       </HStack>
       <Button
         w={"60%"}
+        height={56}
         maxWidth={299}
         bgColor="#7FC4ED"
         onPress={() => modalOpen()}
         marginTop={27}
+        gap={8}
+        padding={4}
         ref={ref}
       >
-        <ButtonText color="black">Começar </ButtonText>
+        <ButtonText fontSize={16} alignSelf="center" color="black">
+          Começar
+        </ButtonText>
+        <Icon as={ArrowRight} alignSelf="center" />
       </Button>
       ;
       <Modal
