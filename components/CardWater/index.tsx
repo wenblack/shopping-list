@@ -9,12 +9,13 @@ export function CardWater({ percentage, amount }: CardWaterProps) {
   return (
     <Card
       w={"60%"}
+      h={"40%"}
+      maxHeight={350}
       maxWidth={299}
-      padding={40}
+      gap={20}
       backgroundColor="#7fc4ed"
-      justifyContent="center"
     >
-      <Center height={"$full"} justifyContent="space-evenly">
+      <Center h={"$full"} justifyContent="space-evenly">
         <Text color="#1F2128" fontSize={12} fontWeight="$bold">
           {percentage}%
         </Text>

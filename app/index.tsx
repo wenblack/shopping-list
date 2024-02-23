@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Center,
   Input,
@@ -24,14 +24,17 @@ import {
 } from "@gluestack-ui/themed";
 import waterIcon from "@/assets/Icons/Emoji";
 import { CardWater } from "@/components/CardWater";
-import { ChevronRight } from "lucide-react-native";
 import ArrowRight from "@/assets/Icons/ChevronLeft";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
-  const ref = React.useRef(null);
+  const [minutes, setMinutes] = useState(0);
+  const [hour, setHour] = useState(0);
+  const [total, setTotal] = useState(3);
+  const [amount, setAmount] = useState(100);
+  const [percentage, setPercentage] = useState(3);
 
+  const ref = React.useRef(null);
   function modalOpen() {
     setTimeout(() => {
       setShowModal(true);
@@ -48,7 +51,7 @@ export default function App() {
         justifyContent="space-between"
       >
         <Text color="#7FC4ED" fontSize={16} fontWeight="$medium">
-          Meta diaria
+          Meta diária
         </Text>
         <Text
           color="#4E4964"
@@ -56,11 +59,13 @@ export default function App() {
           fontSize={12}
           fontWeight="$medium"
         >
-          3L
+          {total}L
         </Text>
       </HStack>
       <Slider
-        defaultValue={0}
+        defaultValue={100}
+        step={50}
+        maxValue={500}
         size="sm"
         orientation="horizontal"
         isDisabled={false}
@@ -89,11 +94,14 @@ export default function App() {
           fontSize={12}
           fontWeight="$medium"
         >
-          100ml
+          {amount}ml
         </Text>
       </HStack>
       <Slider
         defaultValue={0}
+        minValue={100}
+        maxValue={500}
+        step={50}
         size="sm"
         orientation="horizontal"
         isDisabled={false}
@@ -101,6 +109,10 @@ export default function App() {
         w={"60%"}
         maxWidth={299}
         mb={10}
+        onChange={(value) => {
+          setAmount(value);
+          console.log(amount);
+        }}
       >
         <SliderTrack backgroundColor="#322F40">
           <SliderFilledTrack backgroundColor="#7FC4ED" />
@@ -164,7 +176,6 @@ export default function App() {
         </ButtonText>
         <Icon as={ArrowRight} alignSelf="center" />
       </Button>
-      ;
       <Modal
         isOpen={showModal}
         onClose={() => {
