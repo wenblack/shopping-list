@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {
   Center,
+  Input,
+  InputField,
   Button,
   ButtonText,
   Modal,
@@ -37,11 +39,21 @@ export default function App() {
   return (
     <Center bgColor="#1F2128" height={"$full"}>
       <CardWater percentage={100} amount={3} />
-      <HStack w={299} justifyContent="space-between">
-        <Text color="#7FC4ED" fontSize={16} fontWeight="$semibold">
+      <HStack
+        w={"60%"}
+        maxWidth={299}
+        marginTop={27}
+        justifyContent="space-between"
+      >
+        <Text color="#7FC4ED" fontSize={16} fontWeight="$medium">
           Meta diaria
         </Text>
-        <Text color="#7FC4ED" fontSize={16} fontWeight="$semibold">
+        <Text
+          color="#4E4964"
+          marginBottom={9}
+          fontSize={12}
+          fontWeight="$medium"
+        >
           3L
         </Text>
       </HStack>
@@ -53,17 +65,28 @@ export default function App() {
         isReversed={false}
         w={"60%"}
         maxWidth={299}
+        mb={10}
       >
-        <SliderTrack>
-          <SliderFilledTrack />
+        <SliderTrack backgroundColor="#322F40">
+          <SliderFilledTrack backgroundColor="#7FC4ED" />
         </SliderTrack>
-        <SliderThumb />
+        <SliderThumb bgColor="#7FC4ED" />
       </Slider>
-      <HStack w={299} justifyContent="space-between">
-        <Text color="#7FC4ED" fontSize={16} fontWeight="$semibold">
+      <HStack
+        w={"60%"}
+        maxWidth={299}
+        marginTop={27}
+        justifyContent="space-between"
+      >
+        <Text color="#7FC4ED" fontSize={16} fontWeight="$medium">
           Quantidade por timer
         </Text>
-        <Text color="#7FC4ED" fontSize={16} fontWeight="$semibold">
+        <Text
+          color="#4E4964"
+          marginBottom={9}
+          fontSize={12}
+          fontWeight="$medium"
+        >
           100ml
         </Text>
       </HStack>
@@ -75,15 +98,65 @@ export default function App() {
         isReversed={false}
         w={"60%"}
         maxWidth={299}
+        mb={10}
       >
-        <SliderTrack>
-          <SliderFilledTrack />
+        <SliderTrack backgroundColor="#322F40">
+          <SliderFilledTrack backgroundColor="#7FC4ED" />
         </SliderTrack>
-        <SliderThumb />
+        <SliderThumb bgColor="#7FC4ED" />
       </Slider>
-      <Button onPress={() => modalOpen()} ref={ref}>
-        <ButtonText>Show Modal</ButtonText>
+      <HStack alignItems="center" marginTop={27} gap={12}>
+        <Input
+          borderColor="#7FC4ED"
+          width={64}
+          height={64}
+          isDisabled={false}
+          isInvalid={false}
+          isReadOnly={false}
+        >
+          <InputField
+            defaultValue="00"
+            keyboardType="number-pad"
+            color="white"
+            fontSize={32}
+            w={"$full"}
+            type="text"
+            textAlign="center"
+          />
+        </Input>
+        <Text fontSize={20} color="white">
+          :
+        </Text>
+        <Input
+          borderColor="#7FC4ED"
+          width={64}
+          height={64}
+          isDisabled={false}
+          isInvalid={false}
+          isReadOnly={false}
+        >
+          <InputField
+            defaultValue="00"
+            keyboardType="number-pad"
+            color="white"
+            fontSize={32}
+            w={"$full"}
+            type="text"
+            textAlign="center"
+          />
+        </Input>
+      </HStack>
+      <Button
+        w={"60%"}
+        maxWidth={299}
+        bgColor="#7FC4ED"
+        onPress={() => modalOpen()}
+        marginTop={27}
+        ref={ref}
+      >
+        <ButtonText color="black">Começar </ButtonText>
       </Button>
+      ;
       <Modal
         isOpen={showModal}
         onClose={() => {
