@@ -24,7 +24,7 @@ export function CardWater({ percentage, amount }: CardWaterProps) {
           Beber água
         </Text>
         <Text color="#1F2128" fontSize={16}>
-          Meta: {amount}L
+          Meta: {Number(amount).toFixed(1)} L
         </Text>
       </Center>
     </Card>

@@ -32,7 +32,7 @@ export default function App() {
   const [hour, setHour] = useState(0);
   const [total, setTotal] = useState(3);
   const [amount, setAmount] = useState(100);
-  const [percentage, setPercentage] = useState(3);
+  const [percentage, setPercentage] = useState(100);
 
   const ref = React.useRef(null);
   function modalOpen() {
@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <Center bgColor="#1F2128" height={"$full"}>
-      <CardWater percentage={100} amount={3} />
+      <CardWater percentage={percentage} amount={total / 1000} />
       <HStack
         w={"60%"}
         maxWidth={299}
@@ -59,13 +59,14 @@ export default function App() {
           fontSize={12}
           fontWeight="$medium"
         >
-          {total}L
+          {total / 1000}L
         </Text>
       </HStack>
       <Slider
-        defaultValue={100}
-        step={50}
-        maxValue={500}
+        defaultValue={1000}
+        step={500}
+        minValue={1000}
+        maxValue={5000}
         size="sm"
         orientation="horizontal"
         isDisabled={false}
@@ -73,6 +74,10 @@ export default function App() {
         w={"60%"}
         maxWidth={299}
         mb={10}
+        onChange={(value) => {
+          setTotal(value);
+          console.log(total);
+        }}
       >
         <SliderTrack backgroundColor="#322F40">
           <SliderFilledTrack backgroundColor="#7FC4ED" />
@@ -98,7 +103,7 @@ export default function App() {
         </Text>
       </HStack>
       <Slider
-        defaultValue={0}
+        defaultValue={100}
         minValue={100}
         maxValue={500}
         step={50}
