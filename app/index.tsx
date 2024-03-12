@@ -1,220 +1,208 @@
-import React, { useEffect, useState } from "react";
 import {
-  Center,
-  Input,
-  InputField,
-  Button,
-  ButtonText,
-  Modal,
-  ModalContent,
-  ModalBackdrop,
-  ModalHeader,
-  ModalCloseButton,
-  Icon,
-  ModalBody,
-  CloseIcon,
-  Text,
-  ModalFooter,
+  Box,
+  Heading,
   VStack,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
   HStack,
+  Input,
+  Icon,
+  Checkbox,
+  Text,
+  KeyboardAvoidingView,
+  Center,
+  Divider,
 } from "@gluestack-ui/themed";
-import waterIcon from "@/assets/Icons/Emoji";
-import { CardWater } from "@/components/CardWater";
-import ArrowRight from "@/assets/Icons/ChevronLeft";
+import React, { useState, useEffect } from "react";
+interface TaskProps {
+  title: string;
+  isCompleted: boolean;
+}
 
-export default function App() {
-  const [showModal, setShowModal] = useState(false);
-  const [minutes, setMinutes] = useState(0);
-  const [hour, setHour] = useState(0);
-  const [total, setTotal] = useState(3);
-  const [amount, setAmount] = useState(100);
-  const [percentage, setPercentage] = useState(100);
+interface ListProps {
+  listName: string;
+  userName: string;
+}
 
-  const ref = React.useRef(null);
-  function modalOpen() {
-    setTimeout(() => {
-      setShowModal(true);
-    }, 1);
+export default function ToDOList({ listName, userName }: ListProps) {
+  const instState = Array<TaskProps>;
+  const [list, setList] = React.useState(instState);
+  const [inputValue, setInputValue] = React.useState("");
+  const [task, setTasks] = useState(0);
+  const [completedTask, SetCompletedTask] = useState(0);
+  const [result, setReulst] = useState("error");
+
+  useEffect(() => {
+    setList([
+      {
+        isCompleted: false,
+        title: "test",
+      },
+      {
+        isCompleted: false,
+        title: "test",
+      },
+    ]);
+    addItem("TEste 3");
+    handleDelete(0);
+  }, []);
+
+  function addTask() {
+    let totalPlus = task + 1;
+    setTasks(totalPlus);
   }
 
+  function addCompletedTask() {
+    if (task === completedTask) {
+      return;
+    } else {
+      let totalPlus = completedTask + 1;
+      SetCompletedTask(totalPlus);
+    }
+  }
+
+  function removeTask() {
+    if (task === completedTask) {
+      let totalMinus = task - 1;
+      setTasks(totalMinus);
+      console.log(task);
+      removeCompletedTask();
+    } else {
+      let totalMinus = task - 1;
+      setTasks(totalMinus);
+      console.log(task);
+    }
+  }
+
+  function removeCompletedTask() {
+    let totalMinus = completedTask - 1;
+    SetCompletedTask(totalMinus);
+  }
+
+  const addItem = (title: string) => {
+    if (title === "") {
+      alert("Please fill the filds");
+    } else if (list.length === 9) {
+      setTimeout(() => {}, 2000);
+
+      return alert('"You already have many tasks"');
+    }
+
+    setList((prevList) => {
+      return [
+        ...prevList,
+        {
+          title: title,
+          isCompleted: false,
+        },
+      ];
+    });
+    addTask();
+  };
+
+  const handleDelete = (index: number) => {
+    setList((prevList) => {
+      const temp = prevList.filter((_, itemI) => itemI !== index);
+      return temp;
+    });
+    removeTask();
+  };
+
+  const handleStatusChange = (index: number) => {
+    setList((prevList) => {
+      const newList = [...prevList];
+      newList[index].isCompleted = !newList[index].isCompleted;
+      if (newList[index].isCompleted) {
+        addCompletedTask();
+      } else if (!newList[index].isCompleted) {
+        removeCompletedTask();
+      }
+
+      return newList;
+    });
+  };
+
   return (
-    <Center bgColor="#1F2128" height={"$full"}>
-      <CardWater percentage={percentage} amount={total / 1000} />
+    <KeyboardAvoidingView
+      h={"100%"}
+      w={"100%"}
+      display="flex"
+      flex={1}
+      alignItems={"center"}
+    >
       <HStack
-        w={"60%"}
-        maxWidth={299}
-        marginTop={27}
-        justifyContent="space-between"
+        w={"100%"}
+        alignItems="center"
+        flexDirection={"row"}
+        justifyContent={"center"}
+        display="flex"
+        top={0}
+        p={4}
       >
-        <Text color="#7FC4ED" fontSize={16} fontWeight="$medium">
-          Meta diária
-        </Text>
-        <Text
-          color="#4E4964"
-          marginBottom={9}
-          fontSize={12}
-          fontWeight="$medium"
+        <Center
+          width={"100%"}
+          flexDirection="row"
+          justifyContent={"space-between"}
         >
-          {total / 1000}L
-        </Text>
+          <HStack>
+            <Text fontWeight={"bold"} fontFamily="Inter_800ExtraBold">
+              TO-DO
+            </Text>
+          </HStack>
+        </Center>
       </HStack>
-      <Slider
-        defaultValue={1000}
-        step={500}
-        minValue={1000}
-        maxValue={5000}
-        size="sm"
-        orientation="horizontal"
-        isDisabled={false}
-        isReversed={false}
-        w={"60%"}
-        maxWidth={299}
-        mb={10}
-        onChange={(value) => {
-          setTotal(value);
-          console.log(total);
-        }}
-      >
-        <SliderTrack backgroundColor="#322F40">
-          <SliderFilledTrack backgroundColor="#7FC4ED" />
-        </SliderTrack>
-        <SliderThumb bgColor="#7FC4ED" />
-      </Slider>
-      <HStack
-        w={"60%"}
-        maxWidth={299}
-        marginTop={27}
-        justifyContent="space-between"
-      >
-        <Text color="#7FC4ED" fontSize={16} fontWeight="$medium">
-          Quantidade por timer
-        </Text>
-        <Text
-          color="#4E4964"
-          marginBottom={9}
-          fontSize={12}
-          fontWeight="$medium"
-        >
-          {amount}ml
-        </Text>
-      </HStack>
-      <Slider
-        defaultValue={100}
-        minValue={100}
-        maxValue={500}
-        step={50}
-        size="sm"
-        orientation="horizontal"
-        isDisabled={false}
-        isReversed={false}
-        w={"60%"}
-        maxWidth={299}
-        mb={10}
-        onChange={(value) => {
-          setAmount(value);
-          console.log(amount);
-        }}
-      >
-        <SliderTrack backgroundColor="#322F40">
-          <SliderFilledTrack backgroundColor="#7FC4ED" />
-        </SliderTrack>
-        <SliderThumb bgColor="#7FC4ED" />
-      </Slider>
-      <HStack alignItems="center" marginTop={27} gap={12}>
-        <Input
-          borderColor="#7FC4ED"
-          width={64}
-          height={64}
-          isDisabled={false}
-          isInvalid={false}
-          isReadOnly={false}
-        >
-          <InputField
-            defaultValue="00"
-            keyboardType="number-pad"
-            color="white"
-            fontSize={32}
-            w={"$full"}
-            type="text"
-            textAlign="center"
-          />
-        </Input>
-        <Text fontSize={20} color="white">
-          :
-        </Text>
-        <Input
-          borderColor="#7FC4ED"
-          width={64}
-          height={64}
-          isDisabled={false}
-          isInvalid={false}
-          isReadOnly={false}
-        >
-          <InputField
-            defaultValue="00"
-            keyboardType="number-pad"
-            color="white"
-            fontSize={32}
-            w={"$full"}
-            type="text"
-            textAlign="center"
-          />
-        </Input>
-      </HStack>
-      <Button
-        w={"60%"}
-        height={56}
-        maxWidth={299}
-        bgColor="#7FC4ED"
-        onPress={() => modalOpen()}
-        marginTop={27}
-        gap={8}
-        padding={4}
-        ref={ref}
-      >
-        <ButtonText fontSize={16} alignSelf="center" color="black">
-          Começar
-        </ButtonText>
-        <Icon as={ArrowRight} alignSelf="center" />
-      </Button>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-      >
-        <ModalBackdrop />
-        <ModalContent backgroundColor="#1D1B26" h={254} w={299}>
-          <ModalHeader justifyContent="flex-end">
-            <ModalCloseButton backgroundColor="#322F40" borderRadius={"$full"}>
-              <Icon as={CloseIcon} color="white" />
-            </ModalCloseButton>
-          </ModalHeader>
-          <ModalBody justifyContent="center">
-            <Center gap={24}>
-              <Icon as={waterIcon} />
-              <VStack>
-                <Text fontWeight="$semibold" color="#7FC4ED" fontSize={24}>
-                  Lembrete para
-                </Text>
-                <Text
-                  fontWeight="$semibold"
-                  color="#7FC4ED"
-                  alignSelf="center"
-                  fontSize={24}
+
+      <VStack display="flex">
+        <Center>
+          <Box>
+            <Heading
+              size="md"
+              mt={4}
+              textTransform={"uppercase"}
+              fontWeight="800"
+              fontFamily={"Inter_800ExtraBold"}
+              color="green.800"
+            >
+              {listName}
+            </Heading>
+
+            <VStack alignItems="center">
+              {list.map((item, itemI) => (
+                <HStack
+                  w="100%"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  key={item.title + itemI.toString()}
+                  borderColor={item.isCompleted ? "green.500" : "red.500"}
+                  py={2}
+                  marginBottom={1}
                 >
-                  beber água!
-                </Text>
-              </VStack>
-            </Center>
-          </ModalBody>
-          <ModalFooter></ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Center>
+                  <Checkbox
+                    isChecked={item.isCompleted}
+                    borderColor={item.isCompleted ? "green.500" : "red.500"}
+                    onChange={() => handleStatusChange(itemI)}
+                    value={item.title}
+                    ml={2}
+                  ></Checkbox>
+                  <Text
+                    width="100%"
+                    flexShrink={1}
+                    textAlign="left"
+                    textTransform={"lowercase"}
+                    fontWeight={"700"}
+                    strikeThrough={item.isCompleted}
+                    onPress={() => handleStatusChange(itemI)}
+                  >
+                    {item.title}
+                  </Text>
+                </HStack>
+              ))}
+            </VStack>
+          </Box>
+        </Center>
+      </VStack>
+
+      <VStack bottom={0} zIndex={1} bg={"warmGray.50"}>
+        <Divider></Divider>
+      </VStack>
+    </KeyboardAvoidingView>
   );
 }

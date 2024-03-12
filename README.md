@@ -1,4 +1,4 @@
-<strong><h1 align="center">Reminder</h1></strong>
+<strong><h1 align="center">TO-DO App</h1></strong>
 
 <p align="center">
   <img alt="" src=".github/preview.png" width="100%">
@@ -12,6 +12,7 @@ This project was made with the following technologies :
 - TypeScript
 - Expo
 - Expo Router
+- Glue Stack
 
 ---
 
