@@ -1,7 +1,6 @@
 import {
   HStack,
   VStack,
-  Center,
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
@@ -18,7 +17,7 @@ import { MilkIcon } from "@/assets/Icons/MilkIcon";
 import { OptionsIcon } from "@/assets/Icons/OptionsIcon";
 import { AppleIcon } from "@/assets/Icons/AppleIcon";
 
-interface ItemProps {
+export interface ItemProps {
   title: string;
   amount: string;
   type: "Fruits" | "Bakery" | "Vegetables" | "Drinks" | "Meat";
@@ -51,7 +50,7 @@ export function ListItem({ amount, title, type }: ItemProps) {
       >
         <Checkbox size="md" value={""} isChecked={isCompleted}>
           <CheckboxIndicator
-            borderColor={isCompleted ? "gray" : "#A881E6"}
+            borderColor={isCompleted ? "#2F723D" : "#A881E6"}
             mr="$2"
           >
             <CheckboxIcon as={CheckIcon} bgColor="#2F723D" />
@@ -73,8 +72,18 @@ export function ListItem({ amount, title, type }: ItemProps) {
           </CheckboxLabel>
         </Checkbox>
 
-        <HStack gap={12}>
-          <Icon as={AppleIcon}></Icon>
+        <HStack gap={12} alignItems="center">
+          <HStack
+            height={32}
+            padding={8}
+            borderRadius={"$full"}
+            bgColor="#261A17"
+            alignItems="center"
+            justifyContent="center"
+            alignSelf="center"
+          >
+            <Icon as={AppleIcon}></Icon>
+          </HStack>
           <Icon as={OptionsIcon}></Icon>
         </HStack>
       </HStack>
@@ -94,7 +103,7 @@ export function ListItem({ amount, title, type }: ItemProps) {
       >
         <Checkbox size="md" value={""} isChecked={isCompleted}>
           <CheckboxIndicator
-            borderColor={isCompleted ? "gray" : "#A881E6"}
+            borderColor={isCompleted ? "#2F723D" : "#A881E6"}
             mr="$2"
           >
             <CheckboxIcon as={CheckIcon} bgColor="#2F723D" />
@@ -116,8 +125,18 @@ export function ListItem({ amount, title, type }: ItemProps) {
           </CheckboxLabel>
         </Checkbox>
 
-        <HStack gap={12}>
-          <Icon as={PieIcon}></Icon>
+        <HStack gap={12} alignItems="center">
+          <HStack
+            height={32}
+            padding={8}
+            borderRadius={"$full"}
+            bgColor="#211E12"
+            alignItems="center"
+            justifyContent="center"
+            alignSelf="center"
+          >
+            <Icon as={PieIcon}></Icon>
+          </HStack>
           <Icon as={OptionsIcon}></Icon>
         </HStack>
       </HStack>
@@ -137,7 +156,7 @@ export function ListItem({ amount, title, type }: ItemProps) {
       >
         <Checkbox size="md" value={""} isChecked={isCompleted}>
           <CheckboxIndicator
-            borderColor={isCompleted ? "gray" : "#A881E6"}
+            borderColor={isCompleted ? "#2F723D" : "#A881E6"}
             mr="$2"
           >
             <CheckboxIcon as={CheckIcon} bgColor="#2F723D" />
@@ -159,8 +178,18 @@ export function ListItem({ amount, title, type }: ItemProps) {
           </CheckboxLabel>
         </Checkbox>
 
-        <HStack gap={12}>
-          <Icon as={MilkIcon}></Icon>
+        <HStack gap={12} alignItems="center">
+          <HStack
+            height={32}
+            padding={8}
+            borderRadius={"$full"}
+            bgColor="#1A1D23"
+            alignItems="center"
+            justifyContent="center"
+            alignSelf="center"
+          >
+            <Icon as={MilkIcon}></Icon>
+          </HStack>
           <Icon as={OptionsIcon}></Icon>
         </HStack>
       </HStack>
@@ -180,7 +209,7 @@ export function ListItem({ amount, title, type }: ItemProps) {
       >
         <Checkbox size="md" value={""} isChecked={isCompleted}>
           <CheckboxIndicator
-            borderColor={isCompleted ? "gray" : "#A881E6"}
+            borderColor={isCompleted ? "#2F723D" : "#A881E6"}
             mr="$2"
           >
             <CheckboxIcon as={CheckIcon} bgColor="#2F723D" />
@@ -202,8 +231,18 @@ export function ListItem({ amount, title, type }: ItemProps) {
           </CheckboxLabel>
         </Checkbox>
 
-        <HStack gap={12}>
-          <Icon as={CarrotIcon}></Icon>
+        <HStack gap={12} alignItems="center">
+          <HStack
+            height={32}
+            padding={8}
+            borderRadius={"$full"}
+            bgColor="#1C2015"
+            alignItems="center"
+            justifyContent="center"
+            alignSelf="center"
+          >
+            <Icon as={CarrotIcon}></Icon>
+          </HStack>
           <Icon as={OptionsIcon}></Icon>
         </HStack>
       </HStack>
@@ -222,7 +261,7 @@ export function ListItem({ amount, title, type }: ItemProps) {
     >
       <Checkbox size="md" value={""} isChecked={isCompleted}>
         <CheckboxIndicator
-          borderColor={isCompleted ? "gray" : "#A881E6"}
+          borderColor={isCompleted ? "#2F723D" : "#A881E6"}
           mr="$2"
         >
           <CheckboxIcon as={CheckIcon} bgColor="#2F723D" />
@@ -244,8 +283,18 @@ export function ListItem({ amount, title, type }: ItemProps) {
         </CheckboxLabel>
       </Checkbox>
 
-      <HStack gap={12}>
-        <Icon as={MeatIcon}></Icon>
+      <HStack gap={12} alignItems="center">
+        <HStack
+          height={32}
+          padding={8}
+          borderRadius={"$full"}
+          bgColor="#251622"
+          alignItems="center"
+          justifyContent="center"
+          alignSelf="center"
+        >
+          <Icon as={MeatIcon}></Icon>
+        </HStack>
         <Icon as={OptionsIcon}></Icon>
       </HStack>
     </HStack>
