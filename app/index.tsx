@@ -1,3 +1,4 @@
+import { ListItem } from "@/components/ListItem";
 import {
   Box,
   Heading,
@@ -203,6 +204,11 @@ export default function ToDOList({ listName, userName }: ListProps) {
       <VStack bottom={0} zIndex={1} bg={"warmGray.50"}>
         <Divider></Divider>
       </VStack>
+      <ListItem amount="2 unidades" title="Maçã" type="Fruits" />
+      <ListItem amount="4 unidades" title="Pão Francês" type="Bakery" />
+      <ListItem amount="1 unidades" title="Brócolis" type="Vegetables" />
+      <ListItem amount="2 Litros" title="Leite" type="Drinks" />
+      <ListItem amount="2 kg" title="Peito de Frango" type="Meat" />
     </KeyboardAvoidingView>
   );
 }
