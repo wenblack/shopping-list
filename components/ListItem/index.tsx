@@ -42,6 +42,8 @@ export function ListItem({ amount, title, type }: ItemProps) {
         height={68}
         width={"80%"}
         alignItems="center"
+        borderWidth={2}
+        borderColor="#252529"
         justifyContent="space-between"
         bgColor={isCompleted ? "#111112" : "#17171A"}
         padding={16}
@@ -92,6 +94,8 @@ export function ListItem({ amount, title, type }: ItemProps) {
   if (type === "Bakery") {
     return (
       <HStack
+        borderWidth={2}
+        borderColor="#252529"
         height={68}
         width={"80%"}
         alignItems="center"
@@ -145,6 +149,8 @@ export function ListItem({ amount, title, type }: ItemProps) {
   if (type === "Drinks") {
     return (
       <HStack
+        borderWidth={2}
+        borderColor="#252529"
         height={68}
         width={"80%"}
         alignItems="center"
@@ -198,6 +204,8 @@ export function ListItem({ amount, title, type }: ItemProps) {
   if (type === "Vegetables") {
     return (
       <HStack
+        borderWidth={2}
+        borderColor="#252529"
         height={68}
         width={"80%"}
         alignItems="center"
@@ -250,6 +258,8 @@ export function ListItem({ amount, title, type }: ItemProps) {
   }
   return (
     <HStack
+      borderWidth={2}
+      borderColor="#252529"
       height={68}
       width={"80%"}
       alignItems="center"

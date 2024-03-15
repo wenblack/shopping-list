@@ -25,6 +25,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { ChevronDownIcon } from "@/assets/Icons/ChevronDownIcon";
 import { PlusIcon } from "@/assets/Icons/PlusIcon";
+import { Header } from "@/components/Header/Index";
 
 export default function ToDOList() {
   const instState = Array<ItemProps>;
@@ -36,6 +37,11 @@ export default function ToDOList() {
 
   useEffect(() => {
     setList([
+      {
+        amount: "2 unidades",
+        title: "Maçã",
+        type: "Fruits",
+      },
       {
         amount: "2 unidades",
         title: "Maçã",
@@ -55,6 +61,16 @@ export default function ToDOList() {
         amount: "2 Litros",
         title: "Leite",
         type: "Drinks",
+      },
+      {
+        amount: "2 Kgs",
+        title: "Peito de Frango",
+        type: "Meat",
+      },
+      {
+        amount: "2 Kgs",
+        title: "Peito de Frango",
+        type: "Meat",
       },
       {
         amount: "2 Kgs",
@@ -93,14 +109,15 @@ export default function ToDOList() {
   };
 
   return (
-    <VStack>
-      <Center>
+    <VStack height={"100%"} overflow="scroll" bgColor={"#0C0C0D"}>
+      <Header />
+      <Center marginTop={"-$12"}>
         <VStack width={"80%"}>
-          <Text marginBottom={8} color="#AFABB6">
+          <Text marginBottom={8} fontSize={12} color="#AFABB6">
             Item
           </Text>
           <Input borderColor="gray" variant="outline" bgColor="#252529">
-            <InputField placeholder="Enter Text here" color="white" />
+            <InputField color="white" />
           </Input>
 
           <HStack
@@ -110,7 +127,7 @@ export default function ToDOList() {
           >
             <HStack width={"35%"}>
               <VStack width={"100%"}>
-                <Text marginBottom={8} color="#AFABB6">
+                <Text marginBottom={8} fontSize={12} color="#AFABB6">
                   Quantidade
                 </Text>
                 <HStack>
@@ -122,7 +139,7 @@ export default function ToDOList() {
                     zIndex={0}
                     maxWidth={66}
                     size="sm"
-                    width={"30%"}
+                    width={"35%"}
                   >
                     <InputField placeholder="1" color="white" />
                   </Input>
@@ -132,7 +149,7 @@ export default function ToDOList() {
                       variant="outline"
                       size="sm"
                     >
-                      <SelectInput placeholder="UN" />
+                      <SelectInput placeholder="UN" color="white" />
                       <SelectIcon mr="$3">
                         <Icon as={ChevronDownIcon} />
                       </SelectIcon>
@@ -143,21 +160,9 @@ export default function ToDOList() {
                         <SelectDragIndicatorWrapper>
                           <SelectDragIndicator />
                         </SelectDragIndicatorWrapper>
-                        <SelectItem label="UX Research" value="ux" />
-                        <SelectItem label="Web Development" value="web" />
-                        <SelectItem
-                          label="Cross Platform Development Process"
-                          value="Cross Platform Development Process"
-                        />
-                        <SelectItem
-                          label="UI Designing"
-                          value="ui"
-                          isDisabled={true}
-                        />
-                        <SelectItem
-                          label="Backend Development"
-                          value="backend"
-                        />
+                        <SelectItem label="UN" value="UN" />
+                        <SelectItem label="Kg" value="Kg" />
+                        <SelectItem label="L" value="L" />
                       </SelectContent>
                     </SelectPortal>
                   </Select>
@@ -166,12 +171,12 @@ export default function ToDOList() {
             </HStack>
 
             <VStack width={"39%"}>
-              <Text marginBottom={8} color="#AFABB6">
+              <Text fontSize={12} marginBottom={8} color="#AFABB6">
                 Categoria
               </Text>
               <Select width={"100%"} bgColor="#252529">
                 <SelectTrigger borderColor="gray" variant="outline" size="sm">
-                  <SelectInput placeholder="Selecione" />
+                  <SelectInput placeholder="Selecione" color="white" />
                   <SelectIcon mr="$3">
                     <Icon as={ChevronDownIcon} />
                   </SelectIcon>
@@ -182,18 +187,11 @@ export default function ToDOList() {
                     <SelectDragIndicatorWrapper>
                       <SelectDragIndicator />
                     </SelectDragIndicatorWrapper>
-                    <SelectItem label="UX Research" value="ux" />
-                    <SelectItem label="Web Development" value="web" />
-                    <SelectItem
-                      label="Cross Platform Development Process"
-                      value="Cross Platform Development Process"
-                    />
-                    <SelectItem
-                      label="UI Designing"
-                      value="ui"
-                      isDisabled={true}
-                    />
-                    <SelectItem label="Backend Development" value="backend" />
+                    <SelectItem label="Frutas" value="Fruits" />
+                    <SelectItem label="Padaria" value="Bakery" />
+                    <SelectItem label="Vegetais" value="Vegetables" />
+                    <SelectItem label="Bebida" value="Drinks" />
+                    <SelectItem label="Mistura" value="Meat" />
                   </SelectContent>
                 </SelectPortal>
               </Select>
@@ -216,7 +214,13 @@ export default function ToDOList() {
         </VStack>
       </Center>
 
-      <ScrollView w={"$full"} marginTop={40} paddingBottom={16}>
+      <ScrollView
+        w={"$full"}
+        bgColor={"#0C0C0D"}
+        marginTop={40}
+        paddingBottom={50}
+        marginBottom={50}
+      >
         <Center gap={8}>
           {list.map((item, itemI) => (
             <ListItem
