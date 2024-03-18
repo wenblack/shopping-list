@@ -31,54 +31,11 @@ export default function ToDOList() {
   const instState = Array<ItemProps>;
   const [list, setList] = React.useState(instState);
   const [inputValue, setInputValue] = React.useState("");
-  const [task, setTasks] = useState(0);
-  const [completedTask, SetCompletedTask] = useState(0);
-  const [result, setResult] = useState("error");
+  const [amount, setAmount] = React.useState("");
+  const [measurement, setInputMeasurement] = React.useState("");
+  const [categoryValue, setCategoryValue] = React.useState("");
 
-  useEffect(() => {
-    setList([
-      {
-        amount: "2 unidades",
-        title: "Maçã",
-        type: "Fruits",
-      },
-      {
-        amount: "2 unidades",
-        title: "Maçã",
-        type: "Fruits",
-      },
-      {
-        amount: "4 unidades",
-        title: "Pão Francês",
-        type: "Bakery",
-      },
-      {
-        amount: "1 unidades",
-        title: "Brócolis",
-        type: "Vegetables",
-      },
-      {
-        amount: "2 Litros",
-        title: "Leite",
-        type: "Drinks",
-      },
-      {
-        amount: "2 Kgs",
-        title: "Peito de Frango",
-        type: "Meat",
-      },
-      {
-        amount: "2 Kgs",
-        title: "Peito de Frango",
-        type: "Meat",
-      },
-      {
-        amount: "2 Kgs",
-        title: "Peito de Frango",
-        type: "Meat",
-      },
-    ]);
-  }, []);
+  const [result, setResult] = useState("error");
 
   const addItem = ({ amount, title, type }: ItemProps) => {
     if (title === "") {
@@ -108,6 +65,23 @@ export default function ToDOList() {
     });
   };
 
+  function handleAdd() {
+    if (inputValue === "" || amount === "") {
+      return alert("Por favor preencha todos os campos");
+    } else {
+      setList((prevList) => {
+        return [
+          ...prevList,
+          {
+            title: inputValue,
+            amount: amount + measurement,
+            type: categoryValue,
+          },
+        ];
+      });
+    }
+  }
+
   return (
     <VStack height={"100%"} overflow="scroll" bgColor={"#0C0C0D"}>
       <Header />
@@ -117,7 +91,12 @@ export default function ToDOList() {
             Item
           </Text>
           <Input borderColor="gray" variant="outline" bgColor="#252529">
-            <InputField color="white" />
+            <InputField
+              color="white"
+              onChangeText={(e) => {
+                setInputValue(e);
+              }}
+            />
           </Input>
 
           <HStack
@@ -141,15 +120,29 @@ export default function ToDOList() {
                     size="sm"
                     width={"35%"}
                   >
-                    <InputField placeholder="1" color="white" />
+                    <InputField
+                      onChangeText={(e) => {
+                        setAmount(e);
+                      }}
+                      placeholder="1"
+                      color="white"
+                    />
                   </Input>
-                  <Select width={"70%"} zIndex={100} bgColor="#252529">
+                  <Select
+                    onValueChange={(e) => {
+                      setInputMeasurement(e);
+                    }}
+                    width={"70%"}
+                    zIndex={100}
+                    bgColor="#252529"
+                    defaultValue="UN"
+                  >
                     <SelectTrigger
                       borderColor="gray"
                       variant="outline"
                       size="sm"
                     >
-                      <SelectInput placeholder="UN" color="white" />
+                      <SelectInput placeholder="Selecione" color="white" />
                       <SelectIcon mr="$3">
                         <Icon as={ChevronDownIcon} />
                       </SelectIcon>
@@ -174,7 +167,13 @@ export default function ToDOList() {
               <Text fontSize={12} marginBottom={8} color="#AFABB6">
                 Categoria
               </Text>
-              <Select width={"100%"} bgColor="#252529">
+              <Select
+                onValueChange={(e) => {
+                  setCategoryValue(e);
+                }}
+                width={"100%"}
+                bgColor="#252529"
+              >
                 <SelectTrigger borderColor="gray" variant="outline" size="sm">
                   <SelectInput placeholder="Selecione" color="white" />
                   <SelectIcon mr="$3">
@@ -207,6 +206,9 @@ export default function ToDOList() {
               isDisabled={false}
               isFocusVisible={false}
               borderRadius={"$full"}
+              onPress={() => {
+                handleAdd();
+              }}
             >
               <ButtonIcon as={PlusIcon} />
             </Button>
