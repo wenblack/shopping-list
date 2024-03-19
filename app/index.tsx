@@ -230,6 +230,9 @@ export default function ToDOList() {
               title={item.title}
               type={item.type}
               key={itemI}
+              onClick={() => {
+                handleDelete(itemI);
+              }}
             />
           ))}
         </Center>

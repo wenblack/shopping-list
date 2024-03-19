@@ -1,11 +1,13 @@
 import {
   HStack,
+  Button,
   VStack,
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
   CheckIcon,
   CheckboxLabel,
+  TrashIcon,
   Text,
   Icon,
 } from "@gluestack-ui/themed";
@@ -14,16 +16,16 @@ import { CarrotIcon } from "@/assets/Icons/CarrotIcon";
 import { MeatIcon } from "@/assets/Icons/MeatIcon";
 import { PieIcon } from "@/assets/Icons/PieIcon";
 import { MilkIcon } from "@/assets/Icons/MilkIcon";
-import { OptionsIcon } from "@/assets/Icons/OptionsIcon";
 import { AppleIcon } from "@/assets/Icons/AppleIcon";
 
 export interface ItemProps {
   title: string;
   amount: string;
+  onClick?: () => void;
   type: "Fruits" | "Bakery" | "Vegetables" | "Drinks" | "Meat";
 }
 
-export function ListItem({ amount, title, type }: ItemProps) {
+export function ListItem({ amount, title, type, onClick }: ItemProps) {
   const [isCompleted, setIsCompleted] = useState(false);
 
   function handleToggleComplete() {
@@ -86,7 +88,9 @@ export function ListItem({ amount, title, type }: ItemProps) {
           >
             <Icon as={AppleIcon}></Icon>
           </HStack>
-          <Icon as={OptionsIcon}></Icon>
+          <Button onPress={onClick} bg="transparent">
+            <Icon color="$red600" as={TrashIcon}></Icon>
+          </Button>
         </HStack>
       </HStack>
     );
@@ -141,7 +145,9 @@ export function ListItem({ amount, title, type }: ItemProps) {
           >
             <Icon as={PieIcon}></Icon>
           </HStack>
-          <Icon as={OptionsIcon}></Icon>
+          <Button onPress={onClick} bg="transparent">
+            <Icon color="$red600" as={TrashIcon}></Icon>
+          </Button>
         </HStack>
       </HStack>
     );
@@ -196,7 +202,9 @@ export function ListItem({ amount, title, type }: ItemProps) {
           >
             <Icon as={MilkIcon}></Icon>
           </HStack>
-          <Icon as={OptionsIcon}></Icon>
+          <Button onPress={onClick} bg="transparent">
+            <Icon color="$red600" as={TrashIcon}></Icon>
+          </Button>
         </HStack>
       </HStack>
     );
@@ -251,7 +259,9 @@ export function ListItem({ amount, title, type }: ItemProps) {
           >
             <Icon as={CarrotIcon}></Icon>
           </HStack>
-          <Icon as={OptionsIcon}></Icon>
+          <Button onPress={onClick} bg="transparent">
+            <Icon color="$red600" as={TrashIcon}></Icon>
+          </Button>
         </HStack>
       </HStack>
     );
@@ -305,7 +315,9 @@ export function ListItem({ amount, title, type }: ItemProps) {
         >
           <Icon as={MeatIcon}></Icon>
         </HStack>
-        <Icon as={OptionsIcon}></Icon>
+        <Button onPress={onClick} bg="transparent">
+          <Icon color="$red600" as={TrashIcon}></Icon>
+        </Button>
       </HStack>
     </HStack>
   );
